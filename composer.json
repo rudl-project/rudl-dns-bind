@@ -1,0 +1,28 @@
+{
+  "name": "rudl/dns-bin9",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matthias Leuffen",
+      "email": "leuffen@continue.de"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Rudl\\DnsBind\\": "src/"
+    },
+    "files": [
+      "config.php"
+    ]
+  },
+  "require": {
+    "php" : ">=8.0",
+    "rudl/gitdb-lib": "*",
+    "phore/system": "*"
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phore/tester": "*"
+  }
+}
