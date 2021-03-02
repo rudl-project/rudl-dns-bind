@@ -29,6 +29,7 @@ class Bind9UpdateRunner
 
             }
         }
+
         phore_file(BIND_ZONE_CONFIG)->set_contents($config);
         try {
             phore_exec("service named reload");
