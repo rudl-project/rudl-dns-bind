@@ -5,7 +5,7 @@ Authorative DNS Server
 
 ## Problems with host system
 
-Deploy only using direct IP allocation:
+Deploy only using direct IP allocation on host main IP (important to see the source ip):
 
 ```yaml
 version: "3.7"
@@ -14,8 +14,15 @@ services:
   dns:
     image: rudl/dns-bind:unstable
     ports:
-      - "53:53/udp"
-      - "53:53/tcp"
+      - target: 53
+        published: 53
+        protocol: tcp
+        mode: host
+      - target: 53
+        published: 53
+        protocol: udp
+        mode: host
+
     networks:
       - dns_ext
     environment:
@@ -30,8 +37,33 @@ network:
     attachable: true
 ```
 
-docker network create --attachable -d bridge --scope swarm  dns_ext
+
+## Configure the host system
+
+To prevent `systemd-resolved` to block port 53 do the following changes:
+
 ```
-iptables -t nat -A PREROUTING -p udp -m udp -d 185.242.113.85 --dport 53 -j REDIRECT --to-ports 5353
-iptables -t nat -A PREROUTING -p tcp -m tcp -d 185.242.113.85 --dport 53 -j REDIRECT --to-ports 5353
+systemctl stop systemd-resolved
+```
+
+edit `/etc/systemd/resolved.conf` to
+
+```
+[Resolve]
+DNS=8.8.8.8
+#FallbackDNS=
+#Domains=~
+#LLMNR=no
+#MulticastDNS=no
+#DNSSEC=no
+#DNSOverTLS=no
+#Cache=yes
+DNSStubListener=no
+#ReadEtcHosts=yes
+```
+
+and link default resolv.conf to /etc/resolv.conf:
+
+```
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
