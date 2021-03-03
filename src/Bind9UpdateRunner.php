@@ -7,7 +7,6 @@ use Rudl\LibGitDb\RudlGitDbClient;
 
 class Bind9UpdateRunner
 {
-
     public function __construct(
         private RudlGitDbClient $gitDb
     ){}
