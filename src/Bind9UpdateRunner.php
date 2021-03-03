@@ -12,7 +12,6 @@ class Bind9UpdateRunner
         private RudlGitDbClient $gitDb
     ){}
 
-
     public function __invoke()
     {
         $objList = $this->gitDb->syncObjects(DNS_SCOPE, BIND_ZONE_DIR);
