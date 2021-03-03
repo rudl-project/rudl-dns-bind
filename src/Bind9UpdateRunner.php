@@ -38,7 +38,4 @@ class Bind9UpdateRunner
             phore_exec("service named restart");
         }
     }
-
-
-
 }
