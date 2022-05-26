@@ -7,7 +7,6 @@ Authorative DNS Server
 
 Deploy only using direct IP allocation on host main IP (important to see the source ip):
 
-
 ```yaml
 version: "3.7"
 
