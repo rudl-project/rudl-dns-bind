@@ -12,6 +12,7 @@ config_file:
 command:
   build:
     - "composer update"
+    - sudo mkdir -p /etc/bind/zones
 
   run:
     - "sudo php -f bin/update-bind9.php"
