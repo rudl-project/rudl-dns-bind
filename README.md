@@ -67,3 +67,4 @@ and link default resolv.conf to /etc/resolv.conf:
 ```
 ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
+
