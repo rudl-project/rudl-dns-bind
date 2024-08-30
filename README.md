@@ -2,7 +2,6 @@
 Authorative DNS Server
 
 
-
 ## Problems with host system
 
 Deploy only using direct IP allocation on host main IP (important to see the source ip):
